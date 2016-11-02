@@ -7,6 +7,12 @@ query {
     name
     ...on User {
       login
+      repositories {
+        name
+        owner {
+          name
+        }
+      }
     }
   }
 }

@@ -17,7 +17,6 @@ export const Repository = new GraphQLObjectType({
     owner: {
       type: RepositoryOwner,
       resolve: (repository) => {
-        console.dir(repository.getRepositoryOwner)
         return repository.getRepositoryOwner()
       }
     }

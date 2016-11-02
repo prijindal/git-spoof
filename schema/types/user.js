@@ -13,7 +13,7 @@ export const User = new GraphQLObjectType({
   name: 'User',
   interfaces: [RepositoryOwner],
   isTypeOf: () => {
-    return RepositoryOwner
+    return true
   },
   fields: () => ({
     id: {

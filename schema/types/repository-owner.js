@@ -7,8 +7,6 @@ import {
   GraphQLList
 } from 'graphql';
 
-// import {User} from './user';
-
 export const RepositoryOwner = new GraphQLInterfaceType({
   name: 'RepositoryOwner',
   fields: () => ({
