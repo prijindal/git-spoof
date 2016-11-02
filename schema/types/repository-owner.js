@@ -1,14 +1,22 @@
 import {
   GraphQLUnionType,
-  GraphQLInterfaceType
+  GraphQLInterfaceType,
+  GraphQLString,
+  GraphQLInt,
+  GraphQLNonNull,
+  GraphQLList
 } from 'graphql';
 
-import {User} from './user';
+// import {User} from './user';
 
 export const RepositoryOwner = new GraphQLInterfaceType({
   name: 'RepositoryOwner',
-  types: [ User ],
-  resolveType(value) {
-    return User
-  }
+  fields: () => ({
+    id: {
+      type: GraphQLString
+    },
+    name: {
+      type: GraphQLString
+    }
+  })
 })

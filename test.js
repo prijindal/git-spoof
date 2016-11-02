@@ -4,12 +4,9 @@ const schema = require('./schema')
 let query = `
 query {
   repositoryOwner(owner: "prijindal") {
+    name
     ...on User {
       login
-      name
-      repositories(first: 5) {
-        name
-      }
     }
   }
 }

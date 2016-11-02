@@ -1,4 +1,4 @@
-const {
+import {
   GraphQLSchema,
   GraphQLObjectType,
   GraphQLID,
@@ -6,12 +6,16 @@ const {
   GraphQLString,
   GraphQLNonNull,
   GraphQLList
-} = require('graphql');
-const db = require('./db/');
+} from 'graphql';
 
-const {Query} = require('./schema/queries/');
+import {Query} from './schema/queries/';
+
+import {User} from './schema/types/user';
+import {Repository} from './schema/types/repository';
+import {RepositoryOwner} from './schema/types/repository-owner';
 
 const Schema = new GraphQLSchema({
+  types:[User, Repository, RepositoryOwner],
   query: Query
 });
 
