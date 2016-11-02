@@ -5,7 +5,7 @@ import {
 
 import {User} from './user';
 
-export const RepositoryOwner = new GraphQLUnionType({
+export const RepositoryOwner = new GraphQLInterfaceType({
   name: 'RepositoryOwner',
   types: [ User ],
   resolveType(value) {
