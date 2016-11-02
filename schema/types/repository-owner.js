@@ -1,15 +1,14 @@
-const {
-  GraphQLUnionType
-} = require('graphql');
+import {
+  GraphQLUnionType,
+  GraphQLInterfaceType
+} from 'graphql';
 
-const {User} = require('./user');
+import {User} from './user';
 
-const RepositoryOwner = new GraphQLUnionType({
+export const RepositoryOwner = new GraphQLUnionType({
   name: 'RepositoryOwner',
   types: [ User ],
   resolveType(value) {
     return User
   }
 })
-
-exports.RepositoryOwner = RepositoryOwner

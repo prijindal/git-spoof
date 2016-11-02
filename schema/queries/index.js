@@ -1,52 +1,48 @@
-const {
+import {
   GraphQLString,
   GraphQLNonNull,
   GraphQLObjectType
-} = require('graphql');
+} from 'graphql';
 
-const db = require('../../db');
+import db from '../../db';
 
-const {Repository} = require('../types/repository');
-const {RepositoryOwner} = require('../types/repository-owner');
+import {Repository} from '../types/repository';
+import {RepositoryOwner} from '../types/repository-owner';
 
-const Query = new GraphQLObjectType({
+export const Query = new GraphQLObjectType({
   name: 'Query',
   description: 'This represents our base query',
-  fields:() => {
-    return {
-      repository: {
-        type: Repository,
-        args:{
-          owner: {
-            type: new GraphQLNonNull(GraphQLString)
-          },
-          reponame: {
-            type: new GraphQLNonNull(GraphQLString)
-          }
+  fields: () => ({
+    repository: {
+      type: Repository,
+      args:{
+        owner: {
+          type: new GraphQLNonNull(GraphQLString)
         },
-        resolve: (root, {owner, reponame}) => {
-          return db.models.repository.find({where: {name: reponame}})
+        reponame: {
+          type: new GraphQLNonNull(GraphQLString)
         }
       },
-      repositoryOwner: {
-        type: RepositoryOwner,
-        args: {
-          owner: {
-            type: new GraphQLNonNull(GraphQLString)
-          }
-        },
-        resolve: (root, {owner}) => {
-          return db.models.repositoryOwner.find({where: {login: owner}})
+      resolve: (root, {owner, reponame}) => {
+        return db.models.repository.find({where: {name: reponame}})
+      }
+    },
+    repositoryOwner: {
+      type: RepositoryOwner,
+      args: {
+        owner: {
+          type: new GraphQLNonNull(GraphQLString)
         }
       },
-      query: {
-        type: Query,
-        resolve: (root) => {
-          return root;
-        }
+      resolve: (root, {owner}) => {
+        return db.models.repositoryOwner.find({where: {login: owner}})
+      }
+    },
+    query: {
+      type: Query,
+      resolve: (root) => {
+        return root;
       }
     }
-  }
+  })
 })
-
-exports.Query = Query

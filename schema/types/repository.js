@@ -1,29 +1,25 @@
-const {
+import {
   GraphQLString,
   GraphQLObjectType
-} = require('graphql');
+} from 'graphql';
 
-const {RepositoryOwner} = require('./repository-owner');
+import {RepositoryOwner} from './repository-owner';
 
-const Repository = new GraphQLObjectType({
+export const Repository = new GraphQLObjectType({
   name: 'Repository',
-  fields: () => {
-    return {
-      id: {
-        type: GraphQLString
-      },
-      name: {
-        type: GraphQLString
-      },
-      owner: {
-        type: RepositoryOwner,
-        resolve: (repository) => {
-          console.dir(repository.getRepositoryOwner)
-          return repository.getRepositoryOwner()
-        }
+  fields: () => ({
+    id: {
+      type: GraphQLString
+    },
+    name: {
+      type: GraphQLString
+    },
+    owner: {
+      type: RepositoryOwner,
+      resolve: (repository) => {
+        console.dir(repository.getRepositoryOwner)
+        return repository.getRepositoryOwner()
       }
     }
-  }
+  })
 })
-
-exports.Repository = Repository
