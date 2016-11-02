@@ -7,6 +7,7 @@ import {
   } from 'graphql';
 
 import {RepositoryOwner} from './repository-owner';
+import {Repository} from './repository';
 
 export const User = new GraphQLObjectType({
   name: 'User',
@@ -23,6 +24,12 @@ export const User = new GraphQLObjectType({
     },
     login: {
       type: GraphQLString
+    },
+    repositories: {
+      type: new GraphQLList(Repository),
+      resolve(user) {
+        return user.getRepositories();
+      }
     }
   })
 })
