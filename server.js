@@ -10,7 +10,7 @@ const APP_PORT = 3000;
 
 app.use('/graphql', GraphHTTP({
   schema: Schema,
-  root: {db},
+  rootValue: {db},
   pretty: true,
   graphiql: true
 }));

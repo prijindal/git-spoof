@@ -11,12 +11,11 @@ import {
 import {Query} from './schema/queries/';
 
 import {User} from './schema/types/user';
-import {nodeField} from './schema/node/';
 import {Repository} from './schema/types/repository';
 import {RepositoryOwner} from './schema/types/repository-owner';
 
 const Schema = new GraphQLSchema({
-  types:[User, Repository, RepositoryOwner, nodeField],
+  types:[User, Repository, RepositoryOwner],
   query: Query
 });
 

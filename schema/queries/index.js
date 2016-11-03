@@ -12,8 +12,6 @@ import sequelize from 'sequelize';
 import {nodeField} from '../node/'
 import {Repository} from '../types/repository';
 
-console.dir(nodeField.resolve)
-
 export const Query = new GraphQLObjectType({
   name: 'Query',
   description: 'This represents our base query',
